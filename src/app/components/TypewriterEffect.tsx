@@ -9,6 +9,7 @@ const TypewriterEffect = ({ text, speed }: TypewriterEffectProps) => {
     const [displayedText, setDisplayedText] = useState('');
     const [isCursorVisible, setIsCursorVisible] = useState(true);
 
+
     useEffect(() => {
         let i = 0;
         const intervalId = setInterval(() => {
