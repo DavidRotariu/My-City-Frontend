@@ -37,27 +37,11 @@ export default function BarChartComponent() {
         { month: "November", Temperature: 18, Humidity: 695, Noise: 475 },
       ]
 
-    const linechart_data=  [
-        { date: 'Jan', rating: 0 },
-        { date: 'Feb', rating: 2 },
-        { date: 'Mar', rating: 5 },
-        { date: 'Apr', rating: 7 },
-        { date: 'May', rating: 8 },
-        { date: 'Jun', rating: 4 },
-        { date: 'Jul', rating: 8 },
-        { date: 'Aug', rating: 9.5 },
-        { date: 'Sep', rating: 5 },
-        { date: 'Oct', rating: 6 },
-        { date: 'Nov', rating: 2 },
-        { date: 'Dec', rating: 0 },
-      ];
-      
-
   return (
     <div>
       
         <BarChart
-            h={600}
+            h={400}
             data={barchart_data}
             dataKey="month"
             tooltipProps={{
@@ -73,25 +57,6 @@ export default function BarChartComponent() {
             ]}
             />  
 
-        <LineChart
-            h={600}
-            data={linechart_data}
-            series={[{ name: 'rating', label: 'Avg. Rating' }]}
-            dataKey="date"
-            type="gradient"
-            gradientStops={[
-                { offset: 0, color: 'green.7' },
-                { offset: 20, color: 'teal.5' },
-                { offset: 40, color: 'lime.5' },
-                { offset: 70, color: 'yellow.5' },
-                { offset: 80, color: 'orange.6' },
-                { offset: 100, color: 'red.6' },
-            ]}
-            strokeWidth={5}
-            curveType="natural"
-            yAxisProps={{ domain: [0, 10] }}
-            valueFormatter={(value) => `${value}`}
-            />
     </div>
   );
 }
