@@ -1,6 +1,6 @@
 'use client';
 
-import { Drawer, Button } from '@mantine/core';
+import { Dialog, Button } from '@mantine/core';
 
 const CityModal = ({ opened, open, close }: any) => {
     return (
@@ -11,9 +11,16 @@ const CityModal = ({ opened, open, close }: any) => {
                 </Button>
             </div>
 
-            <Drawer opened={opened} onClose={close} title="City tips">
-                {/* Drawer content */}
-            </Drawer>
+            <Dialog
+                opened={opened}
+                onClose={close}
+                size="1000px"
+                h="screen"
+                radius="md"
+                withCloseButton
+                p="md"
+                position={{ bottom: 50, left: 250 }}
+            ></Dialog>
         </>
     );
 };
