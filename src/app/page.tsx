@@ -1,5 +1,15 @@
-import React from "react";
+"use client";
 
-export default function Page() {
-  return <div>page</div>;
-}
+import Map from "./components/Map";
+
+const Home = () => {
+  return (
+    <div>
+      <div className="width-60vh">
+        <Map />
+      </div>
+    </div>
+  );
+};
+
+export default Home;
