@@ -3,7 +3,7 @@ import L from 'leaflet';
 import SensorModal from './SensorModal';
 
 const Map = () => {
-    const [senzor, setSenzor] = useState(0);
+    const [sensor, setSensor] = useState(0);
 
     const mapRef = useRef<L.Map | null>(null);
 
@@ -36,7 +36,7 @@ const Map = () => {
             }).addTo(map);
             marker1.bindPopup('<b>Senzor 1</b>');
             marker1.on('click', () => {
-                setSenzor(1);
+                setSensor(1);
             });
 
             const marker2 = L.marker([47.64115437373143, 26.244929831845194], {
@@ -44,7 +44,7 @@ const Map = () => {
             }).addTo(map);
             marker2.bindPopup('<b>Senzor 2</b>');
             marker2.on('click', () => {
-                setSenzor(2);
+                setSensor(2);
             });
 
             const marker3 = L.marker([47.645176, 26.255689], {
@@ -52,7 +52,7 @@ const Map = () => {
             }).addTo(map);
             marker3.bindPopup('<b>Senzor 3</b>');
             marker3.on('click', () => {
-                setSenzor(3);
+                setSensor(3);
             });
 
             mapRef.current = map;
@@ -62,7 +62,7 @@ const Map = () => {
     return (
         <div className="w-full h-screen relative">
             <div id="map" className="w-full h-full z-0"></div>
-            <SensorModal sensor={senzor} />
+            <SensorModal sensor={sensor} setSensor={setSensor} />
         </div>
     );
 };
