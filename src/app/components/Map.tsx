@@ -15,6 +15,7 @@ interface MapProps {
         reason: string;
     } | null;
     setNewSensor: any;
+    openedTips: any;
 }
 interface sensorProps {
     id: number;
@@ -23,10 +24,13 @@ interface sensorProps {
     name: string;
 }
 
-const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor }: MapProps) => {
+const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor, openedTips }: MapProps) => {
     const [map, setMap] = useState<L.Map | null>(null);
     const mapRef = useRef<HTMLDivElement>(null);
     const markerRef = useRef<L.Marker | null>(null);
+    const polygonRef = useRef<L.Polygon | null>(null);
+    const polygon2Ref = useRef<L.Polygon | null>(null);
+    const polygon3Ref = useRef<L.Polygon | null>(null);
     const [sensors, setSensors] = useState<sensorProps[] | null>(null);
     const redIcon = new L.Icon({
         iconUrl: '/redmarker.png',
@@ -81,26 +85,68 @@ const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor }: MapProps) =
 
     // adding and removing markers
     useEffect(() => {
-        if (opened && newSensor != null) {
-            if (map && !markerRef.current) {
-                const marker4 = L.marker([newSensor.lat, newSensor.lng], {
-                    icon: redIcon
-                }).addTo(map);
-                marker4.bindPopup(Array.isArray(sensors) ? `<b>Senzor ${sensors.length + 1}</b>` : '<b>New sensor</b>');
-                markerRef.current = marker4;
-                marker4.on('click', () => {
-                    marker4.setIcon(blueIcon);
-                    addSensor();
-                    setNewSensor(null);
-                    markerRef.current = null;
-                });
-            }
+        if (opened && newSensor != null && map && !markerRef.current) {
+            const marker4 = L.marker([newSensor.lat, newSensor.lng], {
+                icon: redIcon
+            }).addTo(map);
+            marker4.bindPopup(Array.isArray(sensors) ? `<b>Senzor ${sensors.length + 1}</b>` : '<b>New sensor</b>');
+            markerRef.current = marker4;
+            marker4.on('click', () => {
+                marker4.setIcon(blueIcon);
+                addSensor();
+                setNewSensor(null);
+                markerRef.current = null;
+            });
         }
         if (!opened && markerRef.current && map) {
             map.removeLayer(markerRef.current);
             markerRef.current = null;
         }
     }, [opened, map, newSensor]);
+
+    // adding and removing markers
+    useEffect(() => {
+        if (openedTips && map && !polygonRef.current) {
+            const polygon = L.polygon(
+                [
+                    [47.6412, 26.20056],
+                    [47.64125, 26.22267],
+                    [47.64374, 26.22158]
+                ],
+                { color: 'red' }
+            ).addTo(map);
+            polygonRef.current = polygon;
+
+            const polygon2 = L.polygon(
+                [
+                    [47.642, 26.201],
+                    [47.6425, 26.2235],
+                    [47.644, 26.222]
+                ],
+                { color: 'grey' }
+            ).addTo(map);
+            polygon2Ref.current = polygon2;
+
+            const polygon3 = L.polygon(
+                [
+                    [47.64, 26.199],
+                    [47.6405, 26.221],
+                    [47.642, 26.22]
+                ],
+                { color: 'green' }
+            ).addTo(map);
+            polygon3Ref.current = polygon3;
+            // marker4.bindPopup(Array.isArray(sensors) ? `<b>Senzor ${sensors.length + 1}</b>` : '<b>New sensor</b>');
+        }
+        if (!openedTips && polygonRef.current && polygon2Ref.current && polygon3Ref.current && map) {
+            map.removeLayer(polygonRef.current);
+            map.removeLayer(polygon2Ref.current);
+            map.removeLayer(polygon3Ref.current);
+            polygonRef.current = null;
+            polygon2Ref.current = null;
+            polygon3Ref.current = null;
+        }
+    }, [openedTips]);
 
     // creating the inital map
     useEffect(() => {

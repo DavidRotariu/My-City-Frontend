@@ -17,7 +17,7 @@ const CityModal = ({ opened, open, close }: any) => {
             <Dialog
                 opened={opened}
                 onClose={close}
-                size="500px"
+                size="300px"
                 h="screen"
                 radius="md"
                 withCloseButton
@@ -41,13 +41,6 @@ const CityModal = ({ opened, open, close }: any) => {
                 <List>
                     <List.Item>Combat urban heat islands with green roofs, parks, and more trees.</List.Item>
                     <List.Item>Use cool roofs to lower temperatures in hot areas.</List.Item>
-                </List>
-                <Title order={2}>4. Smart Planning</Title>
-                <List>
-                    <List.Item>
-                        Optimize traffic flows using real-time data to reduce congestion and pollution.
-                    </List.Item>
-                    <List.Item>Implement green infrastructure like rain gardens and permeable pavements.</List.Item>
                 </List>
             </Dialog>
         </>

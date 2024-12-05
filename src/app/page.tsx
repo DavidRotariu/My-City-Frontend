@@ -29,6 +29,7 @@ const Page = () => {
                 opened={openedAI}
                 newSensor={newSensor}
                 setNewSensor={setNewSensor}
+                openedTips={openedDrawer}
             />
             <SensorModal sensor={sensor} setSensor={setSensor} />
             <AIModal
