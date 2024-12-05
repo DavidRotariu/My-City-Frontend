@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { Tabs } from '@mantine/core';
 import TablesComponent from "./tables";
+import BarChartComponent from "./Barchart";
 
 export default function TabsComponent() {
   const [activeTab, setActiveTab] = useState("");
@@ -49,11 +50,11 @@ export default function TabsComponent() {
                 </Tabs.Panel>
 
                 <Tabs.Panel value="monthly">
-                    <TablesComponent/>
+                    <BarChartComponent/>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="yearly">
-                    <TablesComponent/>
+                    <BarChartComponent/>
                 </Tabs.Panel>
             </Tabs>
         </div>
