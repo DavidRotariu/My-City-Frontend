@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Tabs } from '@mantine/core';
 import TablesComponent from "./TablesComponent";
 import BarChartComponent from "./BarchartComponent";
+import LineChartComponent from "./LineChartComponent";
 
 export default function TabsComponent() {
   const [activeTab, setActiveTab] = useState("");
@@ -43,6 +44,14 @@ export default function TabsComponent() {
                     >
                         Yearly
                     </Tabs.Tab>
+                    <Tabs.Tab
+                        onClick={()=>setActiveTab("ratings")}
+                        value="ratings"
+                        className={`text-xl py-4 px-8 font-bold bg-red-100 hover:bg-gray-200 rounded-lg `}
+                        style={{ fontSize: "1rem", padding: "16px 25px", fontWeight: "bold", backgroundColor: activeTab === "ratings" ? "#14b8a6" : ""}}
+                    >
+                        Ratings
+                    </Tabs.Tab>
                 </Tabs.List>
 
                 <Tabs.Panel value="daily">
@@ -55,6 +64,10 @@ export default function TabsComponent() {
 
                 <Tabs.Panel value="yearly">
                     <BarChartComponent/>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="ratings">
+                    <LineChartComponent/>
                 </Tabs.Panel>
             </Tabs>
         </div>

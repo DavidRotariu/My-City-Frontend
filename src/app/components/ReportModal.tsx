@@ -12,7 +12,17 @@ const ReportModal = ({ opened, open, close }: any) => {
                 </Button>
             </div>
 
-            <Modal opened={opened} onClose={close} size="100vw" title="City tips">
+            <Modal opened={opened} 
+                    onClose={close} 
+                    size="100vw" 
+                    styles={{
+                        content: {
+                        height: '90vh', 
+                        },
+                        body: {
+                        overflow: 'auto',
+                        },
+                    }}>
                 <TabsComponent />
             </Modal>
         </>
