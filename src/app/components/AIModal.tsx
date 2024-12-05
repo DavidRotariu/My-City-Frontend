@@ -10,7 +10,6 @@ import {
     Title,
     Button
 } from '@mantine/core';
-import Image from 'next/image';
 
 const AIModal = ({ opened, open, close }: any) => {
     const response =
@@ -21,14 +20,11 @@ const AIModal = ({ opened, open, close }: any) => {
             <div className="fixed bottom-10 right-10 text-3xl">
                 <Button
                     variant="filled"
-                    color="#0DF464"
-                    radius="xl"
-                    p="0"
-                    w="50px"
-                    h="50px"
+                    color="#E0340B"
+                    radius="md"
                     onClick={open}
                 >
-                    <Image src="/plus.svg" alt="Icon" width="40" height="40" />
+                    Add senzor (AI)
                 </Button>
             </div>
             <Dialog

@@ -29,13 +29,13 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     close();
                     setSensor(0);
                 }}
-                size="md"
+                size="sm"
                 radius="md"
                 withCloseButton
                 position={{ top: 120, right: 20 }}
             >
                 <Title size="lg">{`Senzor ${sensor}`}</Title>
-                <Box px="xl" py="sm" mx="auto">
+                <Box px="md" py="sm" mx="auto">
                     <BackgroundImage src="/clouds.jpg" radius="md">
                         <Center p="sm">
                             {sensor == 1 && <Title c="white">24°C</Title>}
@@ -45,7 +45,7 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     </BackgroundImage>
                 </Box>
 
-                <Box px="xl" py="sm" mx="auto">
+                <Box px="md" py="sm" mx="auto">
                     <BackgroundImage src="/water.jpg" radius="md">
                         <Center p="sm">
                             {sensor == 1 && <Title c="white">94%</Title>}
@@ -55,7 +55,7 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     </BackgroundImage>
                 </Box>
 
-                <Box px="xl" py="sm" mx="auto">
+                <Box px="md" py="sm" mx="auto">
                     <BackgroundImage src="/noise.jpg" radius="md">
                         <Center p="sm">
                             {sensor == 1 && <Title c="white">73dB</Title>}
@@ -65,7 +65,7 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     </BackgroundImage>
                 </Box>
 
-                <Box px="xl" py="sm" mx="auto">
+                <Box px="md" py="sm" mx="auto">
                     <BackgroundImage src="/dust.jpg" radius="md">
                         <Center p="sm">
                             {sensor == 1 && <Title c="white">67</Title>}

@@ -55,8 +55,8 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
         if (mapRef.current && !map) {
             const initMap = L.map(mapRef.current).setView(
                 [47.64115437373143, 26.244929831845194],
-                13
-            ); // Set the center and zoom level
+                14
+            );
 
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution:
