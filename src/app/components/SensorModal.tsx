@@ -1,6 +1,6 @@
 'use client';
 
-import { Modal, BackgroundImage, Center, Box, Title } from '@mantine/core';
+import { Dialog, BackgroundImage, Center, Box, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useEffect } from 'react';
 
@@ -22,18 +22,18 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
 
     return (
         <div>
-            <Modal
+            <Dialog
                 opened={opened}
                 onClose={() => {
                     close();
                     setSensor(0);
                 }}
-                title={`Senzor ${sensor}`}
-                size="sm"
-                centered
-                withOverlay={false}
-                className="pl-[550px]"
+                size="md"
+                radius="md"
+                withCloseButton
+                position={{ top: 120, right: 20 }}
             >
+                <Title size="lg">{`Senzor ${sensor}`}</Title>
                 <Box px="xl" py="sm" mx="auto">
                     <BackgroundImage src="/clouds.jpg" radius="md">
                         <Center p="sm">
@@ -73,7 +73,7 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                         </Center>
                     </BackgroundImage>
                 </Box>
-            </Modal>
+            </Dialog>
         </div>
     );
 };
