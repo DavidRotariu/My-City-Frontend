@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from "react";
 import { Tabs } from '@mantine/core';
-import TablesComponent from "./tables";
-import BarChartComponent from "./Barchart";
+import TablesComponent from "./TablesComponent";
+import BarChartComponent from "./BarchartComponent";
 
 export default function TabsComponent() {
   const [activeTab, setActiveTab] = useState("");
