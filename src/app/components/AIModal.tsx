@@ -2,14 +2,8 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
-import {
-    Dialog,
-    BackgroundImage,
-    Center,
-    Box,
-    Title,
-    Button
-} from '@mantine/core';
+import { Dialog, Button } from '@mantine/core';
+import TypewriterEffect from './TypewriterEffect';
 
 const AIModal = ({ opened, open, close }: any) => {
     const response =
@@ -36,7 +30,7 @@ const AIModal = ({ opened, open, close }: any) => {
                 p="md"
                 position={{ bottom: 50, left: 250 }}
             >
-                {response}
+                <TypewriterEffect text={response} speed={30} />
             </Dialog>
         </>
     );
