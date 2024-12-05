@@ -17,6 +17,7 @@ export default function TabsComponent() {
                 variant="default"
                 radius="md"
                 orientation="vertical"
+                defaultValue="daily"
                 color="teal"
             >
                 <Tabs.List className="flex flex-col gap-4">
@@ -45,12 +46,20 @@ export default function TabsComponent() {
                         Yearly
                     </Tabs.Tab>
                     <Tabs.Tab
-                        onClick={()=>setActiveTab("ratings")}
-                        value="ratings"
+                        onClick={()=>setActiveTab("ratingsM")}
+                        value="ratingsM"
                         className={`text-xl py-4 px-8 font-bold bg-red-100 hover:bg-gray-200 rounded-lg `}
-                        style={{ fontSize: "1rem", padding: "16px 25px", fontWeight: "bold", backgroundColor: activeTab === "ratings" ? "#14b8a6" : ""}}
+                        style={{ fontSize: "1rem", padding: "16px 25px", fontWeight: "bold", backgroundColor: activeTab === "ratingsM" ? "#14b8a6" : ""}}
                     >
-                        Ratings
+                        {"Ratings(M)"}
+                    </Tabs.Tab>
+                    <Tabs.Tab
+                        onClick={()=>setActiveTab("ratingsY")}
+                        value="ratingsY"
+                        className={`text-xl py-4 px-8 font-bold bg-red-100 hover:bg-gray-200 rounded-lg `}
+                        style={{ fontSize: "1rem", padding: "16px 25px", fontWeight: "bold", backgroundColor: activeTab === "ratingsY" ? "#14b8a6" : ""}}
+                    >
+                        {"Ratings(Y)"}
                     </Tabs.Tab>
                 </Tabs.List>
 
@@ -66,7 +75,11 @@ export default function TabsComponent() {
                     <BarChartComponent/>
                 </Tabs.Panel>
 
-                <Tabs.Panel value="ratings">
+                <Tabs.Panel value="ratingsM">
+                    <LineChartComponent/>
+                </Tabs.Panel>
+
+                <Tabs.Panel value="ratingsY">
                     <LineChartComponent/>
                 </Tabs.Panel>
             </Tabs>

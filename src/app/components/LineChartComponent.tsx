@@ -46,7 +46,7 @@ export default function LineChartComponent() {
   return (
     <div>
         <LineChart
-            h={300}
+            h={400}
             data={linechart_data}
             series={[{ name: 'rating', label: 'Avg. Rating' }]}
             dataKey="date"
@@ -63,6 +63,7 @@ export default function LineChartComponent() {
             curveType="natural"
             yAxisProps={{ domain: [0, 10] }}
             valueFormatter={(value) => `${value}`}
+            withPointLabels
             />
     </div>
   );
