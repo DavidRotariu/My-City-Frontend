@@ -16,12 +16,15 @@ import { useEffect } from 'react';
 const AIModal = () => {
     const [opened, { open, close }] = useDisclosure(false);
 
+    const response =
+        'This position is slightly southeast of Sensor 1, filling in the gap between Sensors 1 and 2. It ensures better coverage of the southern part of the city, particularly around areas that might not be well-monitored by the existing sensors.';
+
     return (
         <>
             <div className="fixed bottom-10 right-10 text-3xl">
                 <Button
                     variant="filled"
-                    color="#0A841B"
+                    color="#0DF464"
                     radius="xl"
                     p="0"
                     w="50px"
@@ -34,9 +37,14 @@ const AIModal = () => {
             <Dialog
                 opened={opened}
                 onClose={close}
-                size="900px"
-                position={{ bottom: 50, left: 150 }}
-            ></Dialog>
+                size="1000px"
+                radius="md"
+                withCloseButton
+                p="md"
+                position={{ bottom: 50, left: 250 }}
+            >
+                {response}
+            </Dialog>
         </>
     );
 };

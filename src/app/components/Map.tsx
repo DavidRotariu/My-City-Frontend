@@ -1,11 +1,13 @@
-import { useState, useEffect, useRef } from 'react';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { useEffect, useRef } from 'react';
 import L from 'leaflet';
-import SensorModal from './SensorModal';
-import AIModal from './AIModal';
 
-const Map = () => {
-    const [sensor, setSensor] = useState(0);
+interface MapProps {
+    sensor: number;
+    setSensor: React.Dispatch<React.SetStateAction<number>>;
+}
 
+const Map = ({ sensor, setSensor }: MapProps) => {
     const mapRef = useRef<L.Map | null>(null);
 
     useEffect(() => {
@@ -61,7 +63,7 @@ const Map = () => {
             const marker4 = L.marker([47.635, 26.24], {
                 icon: redIcon
             }).addTo(map);
-            marker4.bindPopup('<b>Senzor 3</b>');
+            marker4.bindPopup('<b>Senzor 4</b>');
             marker4.on('click', () => {
                 setSensor(3);
             });
@@ -70,13 +72,7 @@ const Map = () => {
         }
     }, []);
 
-    return (
-        <div className="w-full h-screen relative">
-            <div id="map" className="w-full h-screen z-0"></div>
-            <SensorModal sensor={sensor} setSensor={setSensor} />
-            <AIModal />
-        </div>
-    );
+    return <div id="map" className="w-full h-screen z-0"></div>;
 };
 
 export default Map;
