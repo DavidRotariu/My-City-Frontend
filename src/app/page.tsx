@@ -19,11 +19,17 @@ const Page = () => {
     const [openedAI, { open: openAI, close: closeAI }] = useDisclosure(false);
     const [openedDrawer, { open: openDrawer, close: closeDrawer }] = useDisclosure(false);
     const [openedReport, { open: openReport, close: closeReport }] = useDisclosure(false);
-    const [newSensor, setNewSensor] = useState<newSensorProps[] | null>(null);
+    const [newSensor, setNewSensor] = useState<newSensorProps | null>(null);
 
     return (
         <div className="w-full h-screen relative">
-            <Map sensor={sensor} setSensor={setSensor} opened={openedAI} close={closeAI} />
+            <Map
+                sensor={sensor}
+                setSensor={setSensor}
+                opened={openedAI}
+                newSensor={newSensor}
+                setNewSensor={setNewSensor}
+            />
             <SensorModal sensor={sensor} setSensor={setSensor} />
             <AIModal
                 opened={openedAI}

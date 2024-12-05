@@ -2,14 +2,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
-import L from 'leaflet';
+import L, { latLng } from 'leaflet';
 const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface MapProps {
     sensor: number;
     setSensor: React.Dispatch<React.SetStateAction<number>>;
     opened: any;
-    close: any;
+    newSensor: {
+        lat: number;
+        lng: number;
+        reason: string;
+    } | null;
+    setNewSensor: any;
 }
 interface sensorProps {
     id: number;
@@ -18,7 +23,7 @@ interface sensorProps {
     name: string;
 }
 
-const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
+const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor }: MapProps) => {
     const [map, setMap] = useState<L.Map | null>(null);
     const mapRef = useRef<HTMLDivElement>(null);
     const markerRef = useRef<L.Marker | null>(null);
@@ -35,6 +40,27 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
         iconAnchor: [12, 41],
         popupAnchor: [1, -34]
     });
+
+    const addSensor = async () => {
+        const newSensorData = { lat: newSensor?.lat, lng: newSensor?.lng };
+        try {
+            const response = await fetch(`${baseURL}/sensors`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(newSensorData)
+            });
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            console.log('Response:', data);
+            setSensors(data.sensors);
+        } catch (error) {
+            console.error('There was a problem with fetching the sensors:', error);
+        }
+    };
 
     // fetching the initial sensors
     useEffect(() => {
@@ -55,22 +81,26 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
 
     // adding and removing markers
     useEffect(() => {
-        if (opened) {
+        if (opened && newSensor != null) {
             if (map && !markerRef.current) {
-                const marker4 = L.marker([47.635, 26.24], {
+                const marker4 = L.marker([newSensor.lat, newSensor.lng], {
                     icon: redIcon
                 }).addTo(map);
-                marker4.bindPopup('<b>Senzor 4</b>');
-                marker4.on('click', () => {
-                    console.log('Marker clicked!');
-                });
+                marker4.bindPopup(Array.isArray(sensors) ? `<b>Senzor ${sensors.length + 1}</b>` : '<b>New sensor</b>');
                 markerRef.current = marker4;
+                marker4.on('click', () => {
+                    marker4.setIcon(blueIcon);
+                    addSensor();
+                    setNewSensor(null);
+                    markerRef.current = null;
+                });
             }
-        } else if (markerRef.current && map) {
+        }
+        if (!opened && markerRef.current && map) {
             map.removeLayer(markerRef.current);
             markerRef.current = null;
         }
-    }, [opened, map]);
+    }, [opened, map, newSensor]);
 
     // creating the inital map
     useEffect(() => {

@@ -13,8 +13,8 @@ const TypewriterEffect = ({ text, speed }: TypewriterEffectProps) => {
     useEffect(() => {
         const intervalId = setInterval(() => {
             setDisplayedText((prev) => prev + text[iRef.current]);
-            iRef.current += 1; // Update the index
-            if (iRef.current === text.length) {
+            iRef.current += 1;
+            if (iRef.current === text.length - 1) {
                 clearInterval(intervalId);
             }
         }, speed);

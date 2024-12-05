@@ -9,6 +9,12 @@ const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
     // fetching the new sensor using AI
+
+    function onClose() {
+        close();
+        setNewSensor(null);
+    }
+
     const fetchNewSensor = async () => {
         try {
             const response = await fetch(`${baseURL}/sensors/ai`);
@@ -30,6 +36,7 @@ const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
                     variant="filled"
                     color="#E0340B"
                     radius="md"
+                    disabled={newSensor}
                     onClick={() => {
                         fetchNewSensor();
                         open();
@@ -41,14 +48,17 @@ const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
             {newSensor != null && newSensor.reason != undefined && (
                 <Dialog
                     opened={opened}
-                    onClose={close}
+                    onClose={onClose}
                     size="1000px"
                     radius="md"
                     withCloseButton
                     p="md"
                     position={{ bottom: 50, left: 250 }}
                 >
-                    <TypewriterEffect text={newSensor.reason} speed={30} />
+                    <TypewriterEffect
+                        text={newSensor.reason[0] + newSensor.reason[1] + newSensor.reason.slice(1)}
+                        speed={30}
+                    />
                 </Dialog>
             )}
         </>
