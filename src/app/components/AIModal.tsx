@@ -11,7 +11,7 @@ const AIModal = ({ opened, open, close }: any) => {
 
     return (
         <>
-            <div className="fixed bottom-10 right-10 text-3xl">
+            <div className="fixed bottom-[25px] right-10 text-3xl">
                 <Button
                     variant="filled"
                     color="#E0340B"

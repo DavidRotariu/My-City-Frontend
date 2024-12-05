@@ -1,25 +1,33 @@
 'use client';
 
 import { useState } from 'react';
-import AIModal from './components/AIModal';
-import Map from './components/Map';
-import SensorModal from './components/SensorModal';
 import { useDisclosure } from '@mantine/hooks';
+import Map from './components/Map';
+import AIModal from './components/AIModal';
+import SensorModal from './components/SensorModal';
+import CityModal from './components/CityModal';
 
 const Page = () => {
     const [sensor, setSensor] = useState(0);
-    const [opened, { open, close }] = useDisclosure(false);
+    const [openedAI, { open: openAI, close: closeAI }] = useDisclosure(false);
+    const [openedDrawer, { open: openDrawer, close: closeDrawer }] =
+        useDisclosure(false);
 
     return (
         <div className="w-full h-screen relative">
             <Map
                 sensor={sensor}
                 setSensor={setSensor}
-                opened={opened}
-                close={close}
+                opened={openedAI}
+                close={closeAI}
             />
             <SensorModal sensor={sensor} setSensor={setSensor} />
-            <AIModal opened={opened} open={open} close={close} />
+            <AIModal opened={openedAI} open={openAI} close={closeAI} />
+            <CityModal
+                opened={openedDrawer}
+                open={openDrawer}
+                close={closeDrawer}
+            />
         </div>
     );
 };
