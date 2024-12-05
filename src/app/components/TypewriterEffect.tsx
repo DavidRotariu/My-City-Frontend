@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface TypewriterEffectProps {
     text: string;
@@ -8,14 +8,13 @@ interface TypewriterEffectProps {
 const TypewriterEffect = ({ text, speed }: TypewriterEffectProps) => {
     const [displayedText, setDisplayedText] = useState('');
     const [isCursorVisible, setIsCursorVisible] = useState(true);
-
+    const iRef = useRef(0);
 
     useEffect(() => {
-        let i = 0;
         const intervalId = setInterval(() => {
-            setDisplayedText((prev) => prev + text[i]);
-            i += 1;
-            if (i === text.length - 1) {
+            setDisplayedText((prev) => prev + text[iRef.current]);
+            iRef.current += 1; // Update the index
+            if (iRef.current === text.length) {
                 clearInterval(intervalId);
             }
         }, speed);

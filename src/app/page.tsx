@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import Map from './components/Map';
 import AIModal from './components/AIModal';

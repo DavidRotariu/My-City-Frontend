@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
 import { Dialog, Button } from '@mantine/core';
@@ -22,7 +24,7 @@ const CityModal = ({ opened, open, close }: any) => {
                 p="md"
                 position={{ top: 40, left: 20 }}
             >
-                <Title order={1}>Improving Suceava's Pollution and Making it Greener</Title>
+                <Title order={1}>Improving Suceava&apos;s Pollution and Making it Greener</Title>
                 <Title order={2}>1. Air Quality</Title>
                 <List>
                     <List.Item>

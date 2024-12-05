@@ -3,6 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 interface MapProps {
     sensor: number;
@@ -39,7 +40,7 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
     useEffect(() => {
         const fetchSensors = async () => {
             try {
-                const response = await fetch('http://192.168.0.113:8000/api/sensors');
+                const response = await fetch(`${baseURL}/sensors`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

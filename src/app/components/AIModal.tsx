@@ -5,12 +5,13 @@
 import { Dialog, Button } from '@mantine/core';
 import TypewriterEffect from './TypewriterEffect';
 import { useEffect } from 'react';
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL;
 
 const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
     // fetching the new sensor using AI
     const fetchNewSensor = async () => {
         try {
-            const response = await fetch('http://192.168.0.113:8000/api/sensors/ai');
+            const response = await fetch(`${baseURL}/sensors/ai`);
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
@@ -37,7 +38,7 @@ const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
                     Add senzor (AI)
                 </Button>
             </div>
-            {newSensor != null && (
+            {newSensor != null && newSensor.reason != undefined && (
                 <Dialog
                     opened={opened}
                     onClose={close}
