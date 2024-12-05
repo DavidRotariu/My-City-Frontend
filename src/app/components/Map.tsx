@@ -1,54 +1,70 @@
-import { useState, useEffect, useRef } from "react";
-import L from "leaflet";
+import { useState, useEffect, useRef } from 'react';
+import L from 'leaflet';
+import SensorModal from './SensorModal';
 
 const Map = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const mapRef = useRef<L.Map | null>(null);
-  const toggleModal = () => setIsModalOpen((prev) => !prev);
+    const [senzor, setSenzor] = useState(0);
 
-  useEffect(() => {
-    if (!mapRef.current) {
-      const map = L.map("map").setView([47.65, 26.2761], 13);
+    const mapRef = useRef<L.Map | null>(null);
 
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-        maxZoom: 19,
-        attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-      }).addTo(map);
+    useEffect(() => {
+        if (!mapRef.current) {
+            const map = L.map('map').setView(
+                [47.64115437373143, 26.244929831845194],
+                13
+            );
 
-      const defaultIcon = new L.Icon({
-        iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-        iconSize: [25, 41],
-        iconAnchor: [12, 41],
-        popupAnchor: [1, -34],
-        shadowUrl:
-          "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
-        shadowSize: [41, 41],
-      });
+            L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution:
+                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            }).addTo(map);
 
-      const marker = L.marker([47.65, 26.2761], { icon: defaultIcon }).addTo(
-        map
-      );
+            const defaultIcon = new L.Icon({
+                iconUrl:
+                    'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowUrl:
+                    'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
+                shadowSize: [41, 41]
+            });
 
-      marker.bindPopup("<b>Welcome to Suceava!</b>");
+            const marker1 = L.marker([47.642348, 26.22436], {
+                icon: defaultIcon
+            }).addTo(map);
+            marker1.bindPopup('<b>Senzor 1</b>');
+            marker1.on('click', () => {
+                setSenzor(1);
+            });
 
-      marker.on("click", () => {
-        toggleModal();
-      });
+            const marker2 = L.marker([47.64115437373143, 26.244929831845194], {
+                icon: defaultIcon
+            }).addTo(map);
+            marker2.bindPopup('<b>Senzor 2</b>');
+            marker2.on('click', () => {
+                setSenzor(2);
+            });
 
-      mapRef.current = map;
-    }
-  }, []);
+            const marker3 = L.marker([47.645176, 26.255689], {
+                icon: defaultIcon
+            }).addTo(map);
+            marker3.bindPopup('<b>Senzor 3</b>');
+            marker3.on('click', () => {
+                setSenzor(3);
+            });
 
-  return (
-    <div className="w-full h-screen relative">
-      <div id="map" className="w-full h-full z-0"></div>
+            mapRef.current = map;
+        }
+    }, []);
 
-      {isModalOpen && (
-        <div className="fixed top-1/2 right-5 transform -translate-y-1/2 w-[350px] h-[485px] bg-white z-20 rounded-md"></div>
-      )}
-    </div>
-  );
+    return (
+        <div className="w-full h-screen relative">
+            <div id="map" className="w-full h-full z-0"></div>
+            <SensorModal sensor={senzor} />
+        </div>
+    );
 };
 
 export default Map;
