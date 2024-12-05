@@ -6,12 +6,7 @@ const CityModal = ({ opened, open, close }: any) => {
     return (
         <>
             <div className="fixed bottom-[70px] right-10 text-3xl">
-                <Button
-                    variant="filled"
-                    color="#99E034"
-                    radius="md"
-                    onClick={open}
-                >
+                <Button variant="filled" color="#99E034" radius="md" onClick={open}>
                     Get tips (AI)
                 </Button>
             </div>

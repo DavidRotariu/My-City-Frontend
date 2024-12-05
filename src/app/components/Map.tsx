@@ -39,19 +39,14 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
     useEffect(() => {
         const fetchSensors = async () => {
             try {
-                const response = await fetch(
-                    'http://192.168.0.113:8000/api/sensors'
-                );
+                const response = await fetch('http://192.168.0.113:8000/api/sensors');
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
                 setSensors(data.sensors);
             } catch (error) {
-                console.error(
-                    'There was a problem with fetching the sensors:',
-                    error
-                );
+                console.error('There was a problem with fetching the sensors:', error);
             }
         };
         fetchSensors();
@@ -79,13 +74,9 @@ const Map = ({ sensor, setSensor, opened, close }: MapProps) => {
     // creating the inital map
     useEffect(() => {
         if (mapRef.current && !map && sensors) {
-            const initMap = L.map(mapRef.current).setView(
-                [47.64115437373143, 26.244929831845194],
-                14
-            );
+            const initMap = L.map(mapRef.current).setView([47.64115437373143, 26.244929831845194], 14);
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution:
-                    '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             }).addTo(initMap);
 
             sensors?.forEach((marker, index) => {
