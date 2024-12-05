@@ -1,7 +1,7 @@
 'use client';
 
 import { Modal, Button } from '@mantine/core';
-import TabsComponent from '../report/tabs';
+import TabsComponent from './TabsComponent';
 
 const ReportModal = ({ opened, open, close }: any) => {
     return (
