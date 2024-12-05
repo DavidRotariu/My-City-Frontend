@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 'use client';
 
@@ -9,13 +10,9 @@ import {
     Title,
     Button
 } from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
 import Image from 'next/image';
-import { useEffect } from 'react';
 
-const AIModal = () => {
-    const [opened, { open, close }] = useDisclosure(false);
-
+const AIModal = ({ opened, open, close }: any) => {
     const response =
         'This position is slightly southeast of Sensor 1, filling in the gap between Sensors 1 and 2. It ensures better coverage of the southern part of the city, particularly around areas that might not be well-monitored by the existing sensors.';
 
