@@ -25,7 +25,7 @@ const Page = () => {
 
     return (
         <div className="w-full h-screen relative">
-            <Dialog opened={true} position={{ top: -12, left: 450 }} size="580px" radius="md">
+            <Dialog opened={true} position={{ top: -12, left: 470 }} size="580px" radius="md">
                 <Box className="flex flex-row justify-center items-center h-[64px]">
                     <Image src="/earth.png" alt="earth" width="64" height="64" className="pl-4"></Image>
                     <Title className="pl-4 text-2xl min-w-[160px]">My City</Title>

@@ -22,7 +22,6 @@ const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log(data);
             setNewSensor(data);
         } catch (error) {
             console.error('There was a problem with fetching the sensor:', error);

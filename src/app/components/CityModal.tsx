@@ -24,23 +24,23 @@ const CityModal = ({ opened, open, close }: any) => {
                 p="md"
                 position={{ top: 40, left: 20 }}
             >
-                <Title order={1}>Improving Suceava&apos;s Pollution and Making it Greener</Title>
-                <Title order={2}>1. Air Quality</Title>
+                <Title order={3}>Improving Suceava&apos;s Pollution</Title>
+                <Title order={4}>1. Air Quality</Title>
                 <List>
-                    <List.Item>
-                        Promote electric vehicles, public transport, and stricter emissions regulations.
-                    </List.Item>
                     <List.Item>Increase tree planting and green spaces to absorb pollutants.</List.Item>
+                    <List.Item className="text-green-600">We chose the green area to plant trees.</List.Item>
                 </List>
-                <Title order={2}>2. Noise Pollution</Title>
+                <Title order={4}>2. Noise Pollution</Title>
                 <List>
                     <List.Item>Implement zoning laws to reduce noise in residential areas.</List.Item>
-                    <List.Item>Use sound barriers or trees to absorb noise near busy roads.</List.Item>
+                    <List.Item className="text-gray-600">
+                        We chose the grey area to implement noise reduction.
+                    </List.Item>
                 </List>
-                <Title order={2}>3. Temperature & Humidity</Title>
+                <Title order={3}>3. Temperature & Humidity</Title>
                 <List>
                     <List.Item>Combat urban heat islands with green roofs, parks, and more trees.</List.Item>
-                    <List.Item>Use cool roofs to lower temperatures in hot areas.</List.Item>
+                    <List.Item className="text-blue-600">We chose the blue area to implement cool roofs.</List.Item>
                 </List>
             </Dialog>
         </>

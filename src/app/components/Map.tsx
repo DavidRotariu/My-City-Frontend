@@ -59,7 +59,6 @@ const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor, openedTips }:
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            console.log('Response:', data);
             setSensors(data.sensors);
         } catch (error) {
             console.error('There was a problem with fetching the sensors:', error);
@@ -104,38 +103,31 @@ const Map = ({ sensor, setSensor, opened, newSensor, setNewSensor, openedTips }:
         }
     }, [opened, map, newSensor]);
 
-    // adding and removing markers
+    // adding and removing polygons
     useEffect(() => {
         if (openedTips && map && !polygonRef.current) {
-            const polygon = L.polygon(
-                [
-                    [47.6412, 26.20056],
-                    [47.64125, 26.22267],
-                    [47.64374, 26.22158]
-                ],
-                { color: 'red' }
-            ).addTo(map);
-            polygonRef.current = polygon;
+            const fetchTips = async () => {
+                try {
+                    const response = await fetch(`${baseURL}/tips/ai`);
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    const data = await response.json();
+                    console.log(data);
 
-            const polygon2 = L.polygon(
-                [
-                    [47.642, 26.201],
-                    [47.6425, 26.2235],
-                    [47.644, 26.222]
-                ],
-                { color: 'grey' }
-            ).addTo(map);
-            polygon2Ref.current = polygon2;
+                    const polygon = L.polygon(data[0].polygon, { color: 'green' }).addTo(map);
+                    polygonRef.current = polygon;
 
-            const polygon3 = L.polygon(
-                [
-                    [47.64, 26.199],
-                    [47.6405, 26.221],
-                    [47.642, 26.22]
-                ],
-                { color: 'green' }
-            ).addTo(map);
-            polygon3Ref.current = polygon3;
+                    const polygon2 = L.polygon(data[1].polygon, { color: 'blue' }).addTo(map);
+                    polygon2Ref.current = polygon2;
+
+                    const polygon3 = L.polygon(data[2].polygon, { color: 'grey' }).addTo(map);
+                    polygon3Ref.current = polygon3;
+                } catch (error) {
+                    console.error('There was a problem with fetching city tips:', error);
+                }
+            };
+            fetchTips();
             // marker4.bindPopup(Array.isArray(sensors) ? `<b>Senzor ${sensors.length + 1}</b>` : '<b>New sensor</b>');
         }
         if (!openedTips && polygonRef.current && polygon2Ref.current && polygon3Ref.current && map) {

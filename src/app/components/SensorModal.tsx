@@ -32,7 +32,6 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                console.log(data);
                 setLiveSensor(data.sensor1[0]);
             } catch (error) {
                 console.error('There was a problem with fetching the sensors:', error);

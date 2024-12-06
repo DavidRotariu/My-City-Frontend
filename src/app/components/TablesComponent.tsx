@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { Table } from "@mantine/core";
 
 export default function TablesComponent({params}:any) {
-  // console.log("params", params);
 
   function estimateAirQuality(humidity:any, temperature:any, noiseLevel:any) {
     let airQualityScore = 100; 

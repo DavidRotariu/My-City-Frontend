@@ -22,7 +22,6 @@ export default function TabsComponent() {
                 throw new Error('Network response was not ok');
             }
             const data = await response.json();
-            // console.log(data);
             setDaily(data);
         } catch (error) {
             console.error('There was a problem with fetching daily reports:', error);
@@ -38,7 +37,6 @@ export default function TabsComponent() {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                // console.log(data);
                 setMonthly(data);
             } catch (error) {
                 console.error('There was a problem with fetching daily reports:', error);
