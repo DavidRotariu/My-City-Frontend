@@ -7,6 +7,8 @@ import AIModal from './components/AIModal';
 import SensorModal from './components/SensorModal';
 import CityModal from './components/CityModal';
 import ReportModal from './components/ReportModal';
+import { Box, Dialog, Text, Title } from '@mantine/core';
+import Image from 'next/image';
 
 interface newSensorProps {
     lat: number;
@@ -23,6 +25,16 @@ const Page = () => {
 
     return (
         <div className="w-full h-screen relative">
+            <Dialog opened={true} position={{ top: -12, left: 450 }} size="580px" radius="md">
+                <Box className="flex flex-row justify-center items-center h-[64px]">
+                    <Image src="/earth.png" alt="earth" width="64" height="64" className="pl-4"></Image>
+                    <Title className="pl-4 text-2xl min-w-[160px]">My City</Title>
+                    <Text className="w-full">
+                        Using Artificial Intelligence to respond to pollution and make the world greener
+                    </Text>
+                </Box>
+            </Dialog>
+
             <Map
                 sensor={sensor}
                 setSensor={setSensor}
