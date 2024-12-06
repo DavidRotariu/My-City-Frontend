@@ -6,11 +6,11 @@ export default function TablesYearly() {
   
     
   const params = [
-    { sensor: 1, temperature: 0, humidity: 0, noise: 54, air_qual: "Good", rating: 8.33 },
-    { sensor: 2, temperature: 0, humidity: 0, noise: 54, air_qual: "Good", rating: 8.33 },
-    { sensor: 3, temperature: 0, humidity: 0, noise: 54, air_qual: "Good", rating: 8.33 },
-    { sensor: 4, temperature: 0, humidity: 0, noise: 54, air_qual: "Good", rating: 8.33 },
-    { sensor: 5, temperature: 0, humidity: 0, noise: 54, air_qual: "Good", rating: 8.33 },
+    { sensor: 1, temperature: 20, humidity: 50, noise: 34, air_qual: "Good", rating: 8.33 },
+    { sensor: 2, temperature: 19, humidity: 65, noise: 22, air_qual: "Good", rating: 9 },
+    { sensor: 3, temperature: 21, humidity: 45, noise: 35, air_qual: "Good", rating: 8.7 },
+    { sensor: 4, temperature: 17, humidity: 76, noise: 25, air_qual: "Moderate", rating: 7 },
+    { sensor: 5, temperature: 22, humidity: 47, noise: 27, air_qual: "Unhealthy", rating: 6.1 },
   ];
 
   const rows = params.map((param) => (
