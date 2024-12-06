@@ -31,7 +31,7 @@ const AIModal = ({ opened, open, close, newSensor, setNewSensor }: any) => {
 
     return (
         <>
-            <div className="fixed bottom-[25px] right-10 text-3xl">
+            <div className="fixed bottom-[25px] right-[25px] text-3xl">
                 <Button
                     variant="filled"
                     color="#E0340B"
