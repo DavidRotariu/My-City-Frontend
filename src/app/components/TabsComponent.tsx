@@ -1,14 +1,52 @@
 'use client'
-import React, { useState } from "react";
-import { Tabs } from '@mantine/core';
+import React, { useState, useEffect } from "react";
+import { Accordion, Tabs } from '@mantine/core';
 import TablesComponent from "./TablesComponent";
 import BarChartComponent from "./BarchartComponent";
 import LineChartComponent from "./LineChartComponent";
+import AccordionComponent from "./AccordionComponent";
+import AccordionMonthly from "./AccordionMonthly";
+import AccordionYearly from "./AccordionYearly";
+const baseURL = process.env.NEXT_PUBLIC_BASE_URL
 
 export default function TabsComponent() {
   const [activeTab, setActiveTab] = useState("");
-  
+  const [daily, setDaily] = useState([])
+  const [monthly, setMonthly] = useState([])
 
+  useEffect(() => {
+    const fetchSensors = async () => {
+        try {
+            const response = await fetch(`${baseURL}/reports/daily`);
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            // console.log(data);
+            setDaily(data);
+        } catch (error) {
+            console.error('There was a problem with fetching daily reports:', error);
+        }
+    };
+    fetchSensors();
+}, []);
+    useEffect(() => {
+        const fetchSensors = async () => {
+            try {
+                const response = await fetch(`${baseURL}/reports/monthly`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                // console.log(data);
+                setMonthly(data);
+            } catch (error) {
+                console.error('There was a problem with fetching daily reports:', error);
+            }
+        };
+        fetchSensors();
+    }, []);
+  
   return (
     <div className="p-6">
         <h1 className="text-4xl font-bold mb-7">Reports</h1>
@@ -53,34 +91,22 @@ export default function TabsComponent() {
                     >
                         {"Ratings(M)"}
                     </Tabs.Tab>
-                    <Tabs.Tab
-                        onClick={()=>setActiveTab("ratingsY")}
-                        value="ratingsY"
-                        className={`text-xl py-4 px-8 font-bold bg-red-100 hover:bg-gray-200 rounded-lg `}
-                        style={{ fontSize: "1rem", padding: "16px 25px", fontWeight: "bold", backgroundColor: activeTab === "ratingsY" ? "#14b8a6" : ""}}
-                    >
-                        {"Ratings(Y)"}
-                    </Tabs.Tab>
                 </Tabs.List>
 
                 <Tabs.Panel value="daily">
-                    <TablesComponent/>
+                    <AccordionComponent data={daily}/>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="monthly">
-                    <BarChartComponent/>
+                    <AccordionMonthly data={monthly}/>
                 </Tabs.Panel>
 
                 <Tabs.Panel value="yearly">
-                    <BarChartComponent/>
+                    <AccordionYearly />
                 </Tabs.Panel>
 
                 <Tabs.Panel value="ratingsM">
-                    <LineChartComponent/>
-                </Tabs.Panel>
-
-                <Tabs.Panel value="ratingsY">
-                    <LineChartComponent/>
+                    <LineChartComponent params={monthly}/>
                 </Tabs.Panel>
             </Tabs>
         </div>
