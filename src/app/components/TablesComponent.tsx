@@ -11,7 +11,7 @@ export default function TablesComponent({params}:any) {
     if (humidity > 70) airQualityScore -= (humidity - 70) * 0.5; 
     else if (humidity < 30) airQualityScore -= (30 - humidity) * 0.3;
     
-    if (temperature > 35) airQualityScore -= (temperature - 35) * 1.5; 
+    if (temperature > 20) airQualityScore -= (temperature - 20) * 1.5; 
     else if (temperature < 0) airQualityScore -= (0 - temperature) * 1.2; 
   
     
