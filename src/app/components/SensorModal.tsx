@@ -32,7 +32,8 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                     throw new Error('Network response was not ok');
                 }
                 const data = await response.json();
-                setLiveSensor(data.sensor1[0]);
+                setLiveSensor(data.sensor1);
+                console.log(data.sensor1);
             } catch (error) {
                 console.error('There was a problem with fetching the sensors:', error);
             }
@@ -79,7 +80,7 @@ const SensorModal = ({ sensor, setSensor }: SensorModalProps) => {
                 <Box px="md" py="xs" mx="auto" className="text-center">
                     <BackgroundImage src="/noise.jpg" radius="md">
                         <Center p="sm">
-                            {sensor == 1 && <Title c="white">73dB</Title>}
+                            {sensor == 1 && <Title c="white">{Number(liveSensor[2]).toFixed(1)}dB</Title>}
                             {sensor >= 2 && <Title c="white">40dB</Title>}
                         </Center>
                     </BackgroundImage>
