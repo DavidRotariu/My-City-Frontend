@@ -35,6 +35,8 @@ export default function BarChartComponent() {
         { month: "September", Temperature: 18, Humidity: 695, Noise: 475 },
         { month: "October", Temperature: 18, Humidity: 695, Noise: 475 },
         { month: "November", Temperature: 18, Humidity: 695, Noise: 475 },
+        { month: "December", Temperature: 18, Humidity: 695, Noise: 475 },
+        { month: "January", Temperature: 18, Humidity: 695, Noise: 475 },
       ]
 
   return (
